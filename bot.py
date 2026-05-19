@@ -3,8 +3,12 @@ from discord.ext import commands
 import random
 import os
 
-# 讀取 Token
-TOKEN = "MTQxNjk2MjA3MTU2ODA1NjMyMA.G8paZc.y3UR4qTwh4m_AOwjNvQcgT4M6Gnzsfex31HcRY"
+# 讀取 Token（Render / 環境變數）
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+# 安全檢查（建議加）
+if TOKEN is None:
+    raise ValueError("DISCORD_TOKEN 沒有設定，請檢查 Render Environment Variables")
 
 intents = discord.Intents.default()
 intents.message_content = True
